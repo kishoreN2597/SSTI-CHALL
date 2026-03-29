@@ -9,7 +9,7 @@ def home():
     return '''
         <h2>Template Renderer</h2>
         <form action="/render">
-            <input type="text" name="name">
+            <input type="text" name="name" placeholder="Enter something">
             <button type="submit">Render</button>
         </form>
     '''
@@ -17,7 +17,10 @@ def home():
 @app.route("/render")
 def render():
     name = request.args.get("name", "")
-    template = f"Hello {name}!"
+    
+    # ✅ FIXED (no f-string)
+    template = "Hello " + name + "!"
+    
     return render_template_string(template)
 
 if __name__ == "__main__":
