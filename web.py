@@ -18,10 +18,8 @@ def home():
 def render():
     name = request.args.get("name", "")
     
-    # ✅ FIXED (no f-string)
-    template = "Hello " + name + "!"
-    
-    return render_template_string(template)
+    # 🔥 FULL SSTI (guaranteed execution)
+    return render_template_string(name)
 
 if __name__ == "__main__":
     app.run()
